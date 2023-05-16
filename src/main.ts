@@ -3,7 +3,8 @@ import Debris from './debris.ts'
 
 console.log('main.ts loading')
 const meteor = new Debris();
-console.log(meteor.height);
+meteor.spawn();
+console.log('main.ts loaded');
 
 
 
