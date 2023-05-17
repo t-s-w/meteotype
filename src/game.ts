@@ -23,6 +23,7 @@ export default class Game {
             if (debris.remaining[0] === key) {
                 debris.strike();
                 this.currentTarget = debris;
+                return;
             }
         }
     }

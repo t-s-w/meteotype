@@ -29,7 +29,6 @@ export default class Debris {
     container.appendChild(label);
     document.querySelector('#gameBoardUI')?.appendChild(container);
     window.gameState.activeDebris.push(this);
-    window.gameState.currentTarget = this;
   }
 
   strike() {
@@ -42,6 +41,7 @@ export default class Debris {
   destroy() {
     let element = document.querySelector('#' + this.id);
     element?.parentElement?.removeChild(element);
+    window.gameState.activeDebris.splice(window.gameState.activeDebris.indexOf(this), 1);
     delete window.gameState.currentTarget;
   }
 }
