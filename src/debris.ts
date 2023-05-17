@@ -4,6 +4,7 @@ export default class Debris {
   speed: number;
   word: string;
   remaining: string[];
+  uiElement: object | undefined;
 
   constructor(id = 1) {
     this.id = "debris" + String(id).padStart(4, '0');
@@ -19,10 +20,10 @@ export default class Debris {
 
   spawn() {
     // parent container to control movement and size of the debris.
-    const container = document.createElement('div');
-    container.classList.add('debris-container');
-    container.classList.add('disable-select')
-    container.id = this.id;
+    this.uiElement = document.createElement('div');
+    this.uiElement.classList.add('debris-container');
+    this.uiElement.classList.add('disable-select')
+    this.uiElement.id = this.id;
     // labels indicate the word the player has to type to destroy the debris.
     const label = document.createElement('div');
     label.classList.add('debris-label');
@@ -31,9 +32,9 @@ export default class Debris {
     const image = document.createElement('div');
     image.classList.add('debris-sprite');
     image.innerText = String.fromCodePoint(0x1F311);
-    container.appendChild(image);
-    container.appendChild(label);
-    document.querySelector('#gameBoardUI')?.appendChild(container);
+    this.uiElement.appendChild(image);
+    this.uiElement.appendChild(label);
+    document.querySelector('#gameBoardUI')?.appendChild(this.uiElement);
     window.gameState.activeDebris.push(this);
   }
 
@@ -45,8 +46,7 @@ export default class Debris {
   }
 
   destroy() {
-    let element = document.querySelector('#' + this.id);
-    element?.parentElement?.removeChild(element);
+    this.uiElement.parentElement?.removeChild(this.uiElement);
     window.gameState.activeDebris.splice(window.gameState.activeDebris.indexOf(this), 1);
     delete window.gameState.currentTarget;
   }
