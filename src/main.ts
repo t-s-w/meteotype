@@ -1,11 +1,7 @@
 import './style.css'
 import Debris from './debris.ts'
+import Game from './game.ts'
 
-console.log('main.ts loading')
+window.gameState = new Game();
 const meteor = new Debris();
 meteor.spawn();
-console.log('main.ts loaded');
-
-
-
-

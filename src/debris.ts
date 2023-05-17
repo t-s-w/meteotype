@@ -29,6 +29,8 @@ export default class Debris {
     label.innerText = this.word;
     container.appendChild(label);
     document.querySelector('#gameBoardUI')?.appendChild(container);
+    window.gameState.activeDebris.push(this);
+    window.gameState.currentTarget = this;
   }
 
   strike() {
