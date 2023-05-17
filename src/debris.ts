@@ -23,7 +23,6 @@ export default class Debris {
     const container = document.createElement('div');
     container.classList.add('debris-container');
     container.id = this.id;
-    container.addEventListener('click', () => this.strike());
     const label = document.createElement('div');
     label.classList.add('debris-label');
     label.innerText = this.word;
@@ -43,5 +42,6 @@ export default class Debris {
   destroy() {
     let element = document.querySelector('#' + this.id);
     element?.parentElement?.removeChild(element);
+    delete window.gameState.currentTarget;
   }
 }

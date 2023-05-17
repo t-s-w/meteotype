@@ -1,7 +1,7 @@
 import Debris from './debris.ts';
 
 export default class Game {
-    activeDebris: Object;
+    activeDebris: Debris[];
     currentTarget: Debris | undefined;
     gameBoard: Object;
 
@@ -9,12 +9,30 @@ export default class Game {
     constructor() {
         this.activeDebris = [];
         this.gameBoard = document.querySelector('#gameBoardUI');
-        document.addEventListener('keydown', (evt: Event) => this.shoot(evt));
+        document.addEventListener('keydown', (evt: Event) => this.keyHandler(evt));
     }
 
-    shoot(evt: Event) {
-        if (this.currentTarget.remaining[0] === evt.key) {
+    shoot(key: String) {
+        if (this.currentTarget.remaining[0] === key) {
             this.currentTarget?.strike();
+        }
+    }
+
+    acquireTarget(key: String) {
+        for (let debris of this.activeDebris) {
+            if (debris.remaining[0] === key) {
+                debris.strike();
+                this.currentTarget = debris;
+            }
+        }
+    }
+
+    keyHandler(evt: Event) {
+        let key = evt.key;
+        if (this.currentTarget === undefined) {
+            this.acquireTarget(key);
+        } else {
+            this.shoot(key);
         }
     }
 }
