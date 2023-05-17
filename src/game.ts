@@ -4,12 +4,27 @@ export default class Game {
     activeDebris: Debris[];
     currentTarget: Debris | undefined;
     gameBoard: Object;
+    debrisIndex: number;
 
 
     constructor() {
+        this.debrisIndex = 0;
         this.activeDebris = [];
         this.gameBoard = document.querySelector('#gameBoardUI');
         document.addEventListener('keydown', (evt: Event) => this.keyHandler(evt));
+    }
+
+    // keyHandler listens for the keypresses and does one of two things;
+    // if there is no current target, search for one that matches the key pressed and target it.
+    // if there is a current target, attempt to shoot it (mistakes will simply do nothing, no target switching allowed)
+
+    keyHandler(evt: Event) {
+        let key = evt.key;
+        if (this.currentTarget === undefined) {
+            this.acquireTarget(key);
+        } else {
+            this.shoot(key);
+        }
     }
 
     shoot(key: String) {
@@ -28,12 +43,4 @@ export default class Game {
         }
     }
 
-    keyHandler(evt: Event) {
-        let key = evt.key;
-        if (this.currentTarget === undefined) {
-            this.acquireTarget(key);
-        } else {
-            this.shoot(key);
-        }
-    }
 }
