@@ -74,10 +74,15 @@ export default class Game {
         }
     }
 
-    // debugging method
+    // debugging methods
     debug() {
-        let meteo = new Debris(this.debrisIndex)
+        let meteo = new Debris(this.debrisIndex, Math.floor(Math.random() * 3) + 1)
         this.debrisIndex++;
         meteo.spawn();
+    }
+
+    stop() {
+        clearInterval(this.gameTimeHandler);
+        this.gameTimeHandler = 0;
     }
 }

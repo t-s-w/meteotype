@@ -16,6 +16,24 @@ const generateWord = function (minLength: number, maxLength: number) {
   }
 }
 
+const debrisTypes = {
+  1: {
+    minLength: 5,
+    maxLength: 6,
+    speed: 10,
+  },
+  2: {
+    minLength: 8,
+    maxLength: 9,
+    speed: 4,
+  },
+  3: {
+    minLength: 3,
+    maxLength: 4,
+    speed: 30,
+  }
+}
+
 
 export default class Debris {
   id: string;
@@ -26,20 +44,32 @@ export default class Debris {
   uiElement: HTMLDivElement;
   uiLabel: HTMLDivElement;
   collided: Boolean;
+  posX: number;
+  endX: number;
+  speedX: number;
 
-  constructor(id: number = 1, minLength: number = 4, maxLength: number = minLength) {
+  constructor(id: number = 1, type: number = 1) {
+    // Default parameters that apply to all Debris.
     this.collided = false;
     this.id = "debris" + String(id).padStart(4, '0');
     console.log(`Debris ${this.id} created`);
-    this.height = 600;
-    this.speed = 60;
-    this.word = generateWord(minLength, maxLength);
+    this.height = 100;
+    this.posX = Math.floor(Math.random() * 80) + 20;
+    this.endX = Math.floor(Math.random() * 80) + 20;
+
+    // Type-specific parameters
+    let params = debrisTypes[type];
+    this.speed = params.speed;
+    this.word = generateWord(params.minLength, params.maxLength);
     this.remaining = this.word.split('');
+    this.speedX = (this.endX - this.posX) / (this.height / this.speed)
+
+    // HTML Elements involved
     // parent container to control movement and size of the debris.
     this.uiElement = document.createElement('div');
     this.uiElement.classList.add('debris-container');
     this.uiElement.classList.add('disable-select');
-    this.setHeight();
+    this.setPosition();
     this.uiElement.id = this.id;
     // labels indicate the word the player has to type to destroy the debris.
     this.uiLabel = document.createElement('div');
@@ -76,8 +106,9 @@ export default class Debris {
     delete window.gameState.currentTarget;
   }
 
-  setHeight() {
-    this.uiElement.style.top = (600 - this.height) + 'px';
+  setPosition() {
+    this.uiElement.style.top = (100 - this.height) + '%';
+    this.uiElement.style.left = this.posX + "%";
   }
 
   fall() {
@@ -85,6 +116,7 @@ export default class Debris {
     if (this.height <= 0) {
       this.collided = true;
     }
-    this.setHeight();
+    this.posX += this.speedX / 100;
+    this.setPosition();
   }
 }

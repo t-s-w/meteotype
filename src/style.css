@@ -38,6 +38,7 @@ body {
   height: 600px;
   width: 500px;
   border: 1px solid #000;
+  position: relative;
 }
 
 .debris-container {
@@ -49,8 +50,7 @@ body {
 }
 
 .debris-container>div {
-  top: 50%;
-  left: 50%;
+  object-position: 50% 50%;
   transform: translate(-50%, -50%);
   position: absolute;
 }
