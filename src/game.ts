@@ -51,12 +51,17 @@ export default class Game {
     // tick method causes time to pass; debris fall, new debris spawn, difficulty increases over time
 
     start() {
-        this.gameTimeHandler = setInterval(() => this.tick(), 10);
+        if (!this.gameTimeHandler) {
+            this.gameTimeHandler = setInterval(() => this.tick(), 10);
+        }
     }
 
     tick() {
         for (let debris of this.activeDebris) {
             debris.fall();
+            if (debris.collided) {
+                this.triggerFail();
+            }
         }
     }
 
@@ -64,6 +69,9 @@ export default class Game {
 
     triggerFail() {
         console.log('u lose lol');
+        for (let debris of this.activeDebris) {
+            debris.destroy();
+        }
     }
 
     // debugging method
