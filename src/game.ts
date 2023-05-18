@@ -5,6 +5,7 @@ export default class Game {
     currentTarget: Debris | undefined;
     gameBoard: Element | undefined;
     debrisIndex: number;
+    gameTimeHandler: number;
 
 
     constructor() {
@@ -12,6 +13,7 @@ export default class Game {
         this.activeDebris = [];
         this.gameBoard = document.querySelector('#gameBoardUI');
         document.addEventListener('keydown', (evt) => this.keyHandler(evt));
+        this.gameTimeHandler = 0;
     }
 
     // keyHandler listens for the keypresses and does one of two things;
@@ -47,6 +49,10 @@ export default class Game {
     }
 
     // tick method causes time to pass; debris fall, new debris spawn, difficulty increases over time
+
+    start() {
+        this.gameTimeHandler = setInterval(() => this.tick(), 10);
+    }
 
     tick() {
         for (let debris of this.activeDebris) {

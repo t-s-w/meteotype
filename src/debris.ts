@@ -11,7 +11,7 @@ export default class Debris {
     this.id = "debris" + String(id).padStart(4, '0');
     console.log(`Debris ${this.id} created`);
     this.height = 100;
-    this.speed = 5;
+    this.speed = 10;
     this.word = "excite";
     this.remaining = this.word.split('');
     // parent container to control movement and size of the debris.
@@ -59,7 +59,7 @@ export default class Debris {
   }
 
   fall() {
-    this.height -= this.speed;
+    this.height -= this.speed / 100;
     this.setHeight();
   }
 }
