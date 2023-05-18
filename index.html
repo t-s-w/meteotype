@@ -8,7 +8,8 @@
 </head>
 
 <body>
-  <button onclick="let gameState = new Game();">spawn</button>
+  <button onclick="gameState.debug()">spawn</button>
+  <button onclick="gameState.tick()">tick</button>
   <div id="gameBoardUI"></div>
   <script type="module" src="/src/main.ts"></script>
 </body>
