@@ -69,7 +69,8 @@ export default class Game {
 
     triggerFail() {
         console.log('u lose lol');
-        for (let debris of this.activeDebris) {
+        while (this.activeDebris.length > 0) {
+            let debris = this.activeDebris[0];
             debris.destroy();
         }
     }
