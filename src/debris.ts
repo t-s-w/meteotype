@@ -21,16 +21,22 @@ const debrisTypes = {
     minLength: 5,
     maxLength: 6,
     speed: 10,
+    image: String.fromCodePoint(0x1F311),
+    classes: ['spinning']
   },
   2: {
-    minLength: 8,
-    maxLength: 9,
+    minLength: 9,
+    maxLength: 11,
     speed: 4,
+    image: String.fromCodePoint(0x1F31D),
+    classes: ['large']
   },
   3: {
     minLength: 3,
     maxLength: 4,
     speed: 30,
+    image: String.fromCodePoint(0x1F320),
+    classes: ['shootingstar']
   }
 }
 
@@ -64,6 +70,14 @@ export default class Debris {
     this.remaining = this.word.split('');
     this.speedX = (this.endX - this.posX) / (this.height / this.speed)
 
+    // image for the visual representation of the debris.
+    const image = document.createElement('div');
+    image.classList.add('debris-sprite');
+    for (let cls of params.classes) {
+      image.classList.add(cls);
+    }
+    image.innerText = params.image;
+
     // HTML Elements involved
     // parent container to control movement and size of the debris.
     this.uiElement = document.createElement('div');
@@ -75,11 +89,6 @@ export default class Debris {
     this.uiLabel = document.createElement('div');
     this.uiLabel.classList.add('debris-label');
     this.uiLabel.innerText = this.word;
-    // image for the visual representation of the debris.
-    const image = document.createElement('div');
-    image.classList.add('debris-sprite');
-    image.classList.add('spinning');
-    image.innerText = String.fromCodePoint(0x1F311);
     this.uiElement.appendChild(image);
     this.uiElement.appendChild(this.uiLabel);
   }

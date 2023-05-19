@@ -43,7 +43,7 @@ body {
 #gameBoardUI {
   height: 600px;
   width: 500px;
-  border: 1px solid #000;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5);
   position: relative;
 }
 
@@ -63,11 +63,12 @@ body {
 
 .debris-label {
   background-color: rgba(55, 55, 55, 0.7);
-  width: 80%;
+  width: fit-content;
+  padding: 0 5px;
   border: 2px solid #fff;
   vertical-align: middle;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: normal;
   color: #fff;
 }
 
