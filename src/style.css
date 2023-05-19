@@ -99,6 +99,14 @@ body {
   animation-fill-mode: forwards;
 }
 
+.fadeout {
+  animation-name: fadeout;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
 .status-message {
   font-size: 30px;
   color: rgb(220, 220, 220);
@@ -163,5 +171,15 @@ body {
   100% {
     transform: translate(0%, -50%);
     color: rgba(220, 220, 220, 0);
+  }
+}
+
+@keyframes fadeout {
+  from {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  to {
+    color: rgba(255, 255, 255, 0);
   }
 }

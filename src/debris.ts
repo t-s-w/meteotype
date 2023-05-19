@@ -40,6 +40,8 @@ const debrisTypes = {
   }
 }
 
+const explode = String.fromCodePoint(0X1F4A5);
+
 
 export default class Debris {
   id: string;
@@ -53,6 +55,7 @@ export default class Debris {
   posX: number;
   endX: number;
   speedX: number;
+  image: HTMLDivElement;
 
   constructor(id: number = 1, type: number = 1) {
     // Default parameters that apply to all Debris.
@@ -71,12 +74,12 @@ export default class Debris {
     this.speedX = (this.endX - this.posX) / (this.height / this.speed)
 
     // image for the visual representation of the debris.
-    const image = document.createElement('div');
-    image.classList.add('debris-sprite');
+    this.image = document.createElement('div');
+    this.image.classList.add('debris-sprite');
     for (let cls of params.classes) {
-      image.classList.add(cls);
+      this.image.classList.add(cls);
     }
-    image.innerText = params.image;
+    this.image.innerText = params.image;
 
     // HTML Elements involved
     // parent container to control movement and size of the debris.
@@ -89,7 +92,7 @@ export default class Debris {
     this.uiLabel = document.createElement('div');
     this.uiLabel.classList.add('debris-label');
     this.uiLabel.innerText = this.word;
-    this.uiElement.appendChild(image);
+    this.uiElement.appendChild(this.image);
     this.uiElement.appendChild(this.uiLabel);
   }
 
@@ -103,6 +106,7 @@ export default class Debris {
   strike() {
     this.remaining.shift();
     if (this.remaining.length == 0) {
+      this.uiElement.removeChild(this.uiLabel);
       this.destroy();
       return;
     }
@@ -110,9 +114,12 @@ export default class Debris {
   }
 
   destroy() {
-    this.uiElement.parentElement?.removeChild(this.uiElement);
+    this.image.innerText = explode;
+    this.image.classList.add('fadeout');
     window.gameState.activeDebris.splice(window.gameState.activeDebris.indexOf(this), 1);
     delete window.gameState.currentTarget;
+
+    setTimeout(() => this.uiElement.parentElement?.removeChild(this.uiElement), 1000);
   }
 
   setPosition() {

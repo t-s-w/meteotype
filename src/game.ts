@@ -1,7 +1,7 @@
 import Debris from './debris.ts';
 
 const waves = [
-    , { debrisList: [1, 1, 1, 1, 1], delay: 2000 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }
+    , { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }
 ]
 export default class Game {
     activeDebris: Debris[];
@@ -143,7 +143,8 @@ export default class Game {
             this.debrisIndex++;
             this.queuedDebris.push(debris);
         }
-        this.currentWaveSpawnQueue = setInterval(() => this.spawnNextInWave(), waves[wave].delay)
+        // god please let me find a more elegant solution to delaying the wave spawning by 1 second while the wave start message displays
+        setTimeout(() => { this.currentWaveSpawnQueue = setInterval(() => this.spawnNextInWave(), waves[wave].delay) }, 1000)
         this.nextWaveWaiting = 0;
     }
 
