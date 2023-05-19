@@ -37,6 +37,19 @@ loseUI.id = "loseUI";
 const loseMessage = document.createElement('h1');
 loseMessage.innerText = "WELL...";
 loseUI.appendChild(loseMessage);
+
+const loseImage = document.createElement('div');
+loseImage.style.position = 'relative';
+const earth = document.createElement('div');
+earth.classList.add('lose-image');
+earth.innerText = String.fromCodePoint(0x1F30E);
+const explosion = document.createElement('div');
+explosion.classList.add('explosion');
+explosion.innerText = String.fromCodePoint(0X1F4A5);
+loseImage.appendChild(earth);
+loseImage.appendChild(explosion);
+loseUI.appendChild(loseImage);
+
 const loseReturnButton = document.createElement('div');
 loseReturnButton.classList.add('button');
 loseReturnButton.innerText = "try again?";
@@ -44,6 +57,8 @@ loseReturnButton.addEventListener('click', () => {
     changeScreen('startUI');
 })
 loseUI.appendChild(loseReturnButton);
+
+
 
 const gameBoardUI = document.createElement('div');
 gameBoardUI.id = "gameBoardUI";

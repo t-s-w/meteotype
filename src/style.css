@@ -159,6 +159,18 @@ body {
   width: fit-content;
 }
 
+.lose-image {
+  font-size: 200px;
+}
+
+.explosion {
+  font-size: 150px;
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  transform: rotate(20deg);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
