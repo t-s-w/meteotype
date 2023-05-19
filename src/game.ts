@@ -3,6 +3,19 @@ import Debris from './debris.ts';
 const waves = [
     , { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }
 ]
+
+const targetingReticle = document.createElement('table');
+targetingReticle.classList.add('reticle');
+for (let i = 0; i < 6; i++) {
+    let row = document.createElement('tr');
+    for (let j = 0; j < 6; j++) {
+        let cell = document.createElement('td');
+        row.appendChild(cell);
+    }
+    targetingReticle.appendChild(row);
+}
+
+
 export default class Game {
     activeDebris: Debris[];
     queuedDebris: Debris[];
@@ -59,6 +72,7 @@ export default class Game {
         for (let debris of this.activeDebris) {
             if (debris.remaining[0] === key) {
                 debris.strike();
+                debris.uiElement.appendChild(targetingReticle);
                 this.currentTarget = debris;
                 return;
             }
@@ -77,7 +91,7 @@ export default class Game {
             messageUI.id = 'status';
             messageUI.classList.add('disable-select', 'status-message', 'message-fadein');
         } else {
-            messageUI?.classList.remove('message-fadein', 'message-fadeout');
+            messageUI?.classList.remove('message-fadein');
         }
         messageUI.innerText = text;
         messageUI.classList.add('message-fadein');

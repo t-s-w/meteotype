@@ -2,7 +2,7 @@ import './style.css'
 import Debris from './debris.ts'
 import Game from './game.ts'
 
-window.gameState = new Game();
+console.log(new Game())
 
 const startUI = document.createElement('div');
 startUI.id = "startUI";
@@ -35,11 +35,11 @@ winUI.appendChild(winReturnButton);
 const loseUI = document.createElement('div');
 loseUI.id = "loseUI";
 const loseMessage = document.createElement('h1');
-loseMessage.innerText = "You Lost";
+loseMessage.innerText = "WELL...";
 loseUI.appendChild(loseMessage);
 const loseReturnButton = document.createElement('div');
 loseReturnButton.classList.add('button');
-loseReturnButton.innerText = "BACK TO MAIN MENU";
+loseReturnButton.innerText = "try again?";
 loseReturnButton.addEventListener('click', () => {
     changeScreen('startUI');
 })

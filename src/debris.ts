@@ -106,7 +106,6 @@ export default class Debris {
   strike() {
     this.remaining.shift();
     if (this.remaining.length == 0) {
-      this.uiElement.removeChild(this.uiLabel);
       this.destroy();
       return;
     }
@@ -114,6 +113,7 @@ export default class Debris {
   }
 
   destroy() {
+    this.uiElement.removeChild(this.uiLabel);
     this.image.innerText = explode;
     this.image.classList.add('fadeout');
     window.gameState.activeDebris.splice(window.gameState.activeDebris.indexOf(this), 1);

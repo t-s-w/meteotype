@@ -14,6 +14,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --targeting-reticle: 2px solid #ff0000;
 }
 
 html {
@@ -53,6 +55,10 @@ h1 {
   display: flex;
   align-items: center;
   font-size: 30px;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 a {
@@ -166,6 +172,34 @@ body {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.reticle {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.reticle :first-child :first-child {
+  border-top: var(--targeting-reticle);
+  border-left: var(--targeting-reticle);
+}
+
+.reticle :first-child :last-child {
+  border-top: var(--targeting-reticle);
+  border-right: var(--targeting-reticle);
+}
+
+.reticle :last-child :first-child {
+  border-bottom: var(--targeting-reticle);
+  border-left: var(--targeting-reticle);
+}
+
+.reticle :last-child :last-child {
+  border-bottom: var(--targeting-reticle);
+  border-right: var(--targeting-reticle);
 }
 
 /* disable text selection class: from https://stackoverflow.com/questions/10809995/css-disable-text-selection */
