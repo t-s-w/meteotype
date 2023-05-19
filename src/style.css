@@ -126,6 +126,10 @@ body {
   font-size: 80px;
 }
 
+.debris-container>.small {
+  font-size: 30px;
+}
+
 .spinning {
   animation-name: spin;
   animation-duration: 5000ms;

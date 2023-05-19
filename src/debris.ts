@@ -37,6 +37,13 @@ const debrisTypes = {
     speed: 30,
     image: String.fromCodePoint(0x1F320),
     classes: ['shootingstar']
+  },
+  4: {
+    minLength: 3,
+    maxLength: 3,
+    speed: 4,
+    image: String.fromCodePoint(0x1F31A),
+    classes: ['small']
   }
 }
 
@@ -56,9 +63,11 @@ export default class Debris {
   endX: number;
   speedX: number;
   image: HTMLDivElement;
+  type: number;
 
   constructor(id: number = 1, type: number = 1) {
     // Default parameters that apply to all Debris.
+    this.type = type;
     this.collided = false;
     this.id = "debris" + String(id).padStart(4, '0');
     console.log(`Debris ${this.id} created`);
@@ -124,6 +133,23 @@ export default class Debris {
     delete window.gameState.currentTarget;
 
     setTimeout(() => this.uiElement.parentElement?.removeChild(this.uiElement), 1000);
+
+    if (this.type === 2) {
+      let childDebris1 = new Debris(window.gameState.debrisIndex, 4);
+      window.gameState.debrisIndex++;
+      childDebris1.height = this.height;
+      childDebris1.id = this.id + "child1";
+      childDebris1.posX = this.posX - 5;
+      childDebris1.speedX = -this.speedX;
+      let childDebris2 = new Debris(window.gameState.debrisIndex, 4);
+      window.gameState.debrisIndex++;
+      childDebris2.height = this.height;
+      childDebris2.id = this.id + "child1";
+      childDebris2.posX = this.posX + 5;
+      childDebris2.speedX = this.speedX;
+      childDebris1.spawn();
+      childDebris2.spawn();
+    }
   }
 
   setPosition() {
