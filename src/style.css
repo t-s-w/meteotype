@@ -107,10 +107,11 @@ body {
   background-color: rgba(55, 55, 55, 0.7);
   width: fit-content;
   padding: 0 5px;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   vertical-align: middle;
   border-radius: 5px;
-  font-weight: normal;
+  font-weight: 300;
+  letter-spacing: 1px;
   color: #fff;
 }
 
@@ -163,7 +164,11 @@ body {
   width: fit-content;
 }
 
-.lose-image {
+.ui-image {
+  position: relative;
+}
+
+.earth-large {
   font-size: 200px;
 }
 
@@ -173,6 +178,14 @@ body {
   top: -25px;
   left: -15px;
   transform: rotate(20deg);
+}
+
+.falling-star {
+  font-size: 50px;
+  position: absolute;
+  top: 10px;
+  left: -45px;
+  transform: rotate(270deg);
 }
 
 @media (prefers-color-scheme: light) {
