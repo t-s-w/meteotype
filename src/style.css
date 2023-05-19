@@ -23,6 +23,7 @@ html {
   background: radial-gradient(ellipse at bottom, #1B2735 10%, #090A0F 100%)
 }
 
+/* shiny part-transparent headers: taken from https://codepen.io/sarazond/pen/LYGbwj */
 h1 {
   color: #FFF;
   text-align: center;
