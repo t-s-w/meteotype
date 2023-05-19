@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 :root {
   font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -21,6 +21,38 @@ html {
   background: radial-gradient(ellipse at bottom, #1B2735 10%, #090A0F 100%)
 }
 
+h1 {
+  color: #FFF;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  letter-spacing: 10px;
+  background: -webkit-linear-gradient(white, #38495a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#startUI,
+#winUI,
+#loseUI {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button {
+  background: rgba(200, 200, 200, 0.6);
+  color: #1b2735;
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+}
 
 a {
   font-weight: 500;
