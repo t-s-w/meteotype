@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -41,7 +43,7 @@ body {
 }
 
 #gameBoardUI {
-  height: 600px;
+  height: 700px;
   width: 500px;
   border-bottom: 1px solid rgba(200, 200, 200, 0.5);
   position: relative;

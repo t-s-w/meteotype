@@ -108,10 +108,15 @@ export default class Game {
         }
 
         // If wave not currently in progress, initialise the next one
-        if (this.activeDebris.length === 0 && (this.currentWave < this.maxWaves) && !(this.queuedDebris.length) && !(this.nextWaveWaiting)) {
-            this.currentWave++;
-            this.nextWaveWaiting = setTimeout(() => this.startWave(this.currentWave), 1000)
-            return;
+        if (this.activeDebris.length === 0 && !(this.queuedDebris.length) && !(this.nextWaveWaiting)) {
+            if (this.currentWave < this.maxWaves) {
+                this.currentWave++;
+                this.nextWaveWaiting = setTimeout(() => this.startWave(this.currentWave), 1000)
+                return;
+            } else {
+                this.triggerWin();
+            }
+
         }
 
         // If there are any active debris, or if there are any queued debris, then a wave is currently in progress. progress that wave
@@ -158,6 +163,10 @@ export default class Game {
     }
 
     // lose condition
+
+    triggerWin() {
+        console.log('you win!');
+    }
 
     triggerFail() {
         console.log('u lose lol');
