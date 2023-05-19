@@ -1,7 +1,7 @@
 import Debris from './debris.ts';
 
 const waves = [
-    , { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }
+    , { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }, { debrisList: [1, 3, 1, 3, 1, 3, 1, 3], delay: 1000 }
 ]
 
 const targetingReticle = document.createElement('table');

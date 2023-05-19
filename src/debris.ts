@@ -115,6 +115,10 @@ export default class Debris {
   destroy() {
     this.uiElement.removeChild(this.uiLabel);
     this.image.innerText = explode;
+    if (this.uiElement.querySelector('table')) {
+      let reticle = this.uiElement.querySelector('table');
+      reticle?.parentElement?.removeChild(reticle);
+    }
     this.image.classList.add('fadeout');
     window.gameState.activeDebris.splice(window.gameState.activeDebris.indexOf(this), 1);
     delete window.gameState.currentTarget;
