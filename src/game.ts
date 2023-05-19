@@ -1,27 +1,36 @@
 import Debris from './debris.ts';
 
-const waves = {
-    1: { debrisList: [1, 1, 1, 1, 1], delay = 500 }
-}
-
+const waves = [
+    , { debrisList: [1, 1, 1, 1, 1], delay: 2000 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }
+]
 export default class Game {
     activeDebris: Debris[];
+    queuedDebris: Debris[];
     currentTarget: Debris | undefined;
     gameBoard: Element | undefined | null;
     debrisIndex: number;
     gameTimeHandler: number;
     systemMessageTimer: number;
     systemMessageQueue: string[];
+    currentWave: number;
+    currentWaveSpawnQueue: number;
+    maxWaves: number;
+    nextWaveWaiting: number;
 
 
     constructor() {
         this.debrisIndex = 0;
         this.activeDebris = [];
+        this.queuedDebris = [];
+        this.currentWave = 0;
+        this.maxWaves = waves.length - 1;
         this.gameBoard = document.querySelector('#gameBoardUI');
         document.addEventListener('keydown', (evt) => this.keyHandler(evt));
         this.gameTimeHandler = 0;
         this.systemMessageTimer = 0;
-        this.systemMessageQueue = []l
+        this.systemMessageQueue = [];
+        this.nextWaveWaiting = 0;
+        this.currentWaveSpawnQueue = 0;
     }
 
     // keyHandler listens for the keypresses and does one of two things;
@@ -89,6 +98,7 @@ export default class Game {
     }
 
     tick() {
+        // If messages are to be displayed, they display before anything else happens
         if (this.systemMessageTimer > 0) {
             return;
         }
@@ -97,7 +107,14 @@ export default class Game {
             return;
         }
 
+        // If wave not currently in progress, initialise the next one
+        if (this.activeDebris.length === 0 && (this.currentWave < this.maxWaves) && !(this.queuedDebris.length) && !(this.nextWaveWaiting)) {
+            this.currentWave++;
+            this.nextWaveWaiting = setTimeout(() => this.startWave(this.currentWave), 1000)
+            return;
+        }
 
+        // If there are any active debris, or if there are any queued debris, then a wave is currently in progress. progress that wave
         for (let debris of this.activeDebris) {
             debris.fall();
             if (debris.collided) {
@@ -119,7 +136,25 @@ export default class Game {
     // - debris will come from array, which will empty out over time
     // - after array is empty, stop() and make next wave available to start
 
+    startWave(wave: number) {
+        this.systemMessageQueue.push(`Wave ${wave} start`);
+        for (let debrisType of waves[wave].debrisList) {
+            let debris = new Debris(this.debrisIndex, debrisType);
+            this.debrisIndex++;
+            this.queuedDebris.push(debris);
+        }
+        this.currentWaveSpawnQueue = setInterval(() => this.spawnNextInWave(), waves[wave].delay)
+        this.nextWaveWaiting = 0;
+    }
 
+    spawnNextInWave() {
+        if (this.queuedDebris.length > 0) {
+            this.queuedDebris.shift()?.spawn();
+        } else {
+            clearInterval(this.currentWaveSpawnQueue);
+            this.currentWaveSpawnQueue = 0;
+        }
+    }
 
     // lose condition
 
