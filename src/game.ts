@@ -165,15 +165,18 @@ export default class Game {
     // lose condition
 
     triggerWin() {
+        this.stop();
         console.log('you win!');
+        window.changeScreen('winUI');
     }
 
     triggerFail() {
-        console.log('u lose lol');
+        this.stop();
         while (this.activeDebris.length > 0) {
             let debris = this.activeDebris[0];
             debris.destroy();
         }
+        setTimeout(() => window.changeScreen('loseUI'), 1000);
     }
 
     // debugging methods
