@@ -187,12 +187,11 @@ export default class Game {
 
     triggerFail() {
         this.stop();
-        this.gameBoard.innerHTML = '';
         while (this.activeDebris.length > 0) {
             let debris = this.activeDebris[0];
             debris.destroy();
         }
-        setTimeout(() => window.changeScreen('loseUI'), 1000);
+        setTimeout(() => {window.changeScreen('loseUI');this.gameBoard.innerHTML = '';}, 1000);
     }
 
     // debugging methods
