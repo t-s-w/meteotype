@@ -2,14 +2,14 @@
 
 A shower of meteors is headed right toward Earth and threatening world destruction! Grab your keyboard-controlled weirdly powerful laser and destroy the pieces before they land!
 
-<div style="display:flex;justify-content:center;flex-direction:column;"><span style="padding:10px;font-family:Helvetica sans-serif;font-weight:bold;background-color:#555;color:#aaa;"><a href="https://t-s-w.github.io/meteotype">PLAY</a></span></div>
+https://t-s-w.github.io/meteotype - Click to play
 
 ## Tech Stack
 
 * TypeScript (Javascript) - Used to control majority of the game.
     - Game data: Game state stored in a Game Class, the meteors to be destroyed are all Debris classes.
     - DOM Manipulation: Provides the visual animations in the game.
-* HTML & CSS - It's a browser game after all! HTML provides the structure of the document objects on the screen, CSS is used to make them look good!
+* HTML & CSS - HTML provides the structure of the document objects on the screen, CSS is used to make them look good!
 * Vite - development environment used to code the game.
 
 ## Wireframe - Development notes
