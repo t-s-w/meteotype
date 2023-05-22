@@ -176,7 +176,7 @@ export default class Game {
         }
     }
 
-    // lose condition
+    // Win and lose functions; end game, display the winning/losing screens with options to return to main menu
 
     triggerWin() {
         this.stop();

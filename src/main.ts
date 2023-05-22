@@ -7,6 +7,7 @@ declare global {
     changeScreen: Function }
 }
 
+// Create a HTML element containing an Earth emoji for start/end screens
 function newEarth() {
     const earth = document.createElement('div');
     earth.classList.add('earth-large');
@@ -14,6 +15,7 @@ function newEarth() {
     return earth;
 }
 
+// Create HTML element with falling star emoji for start screen
 function newFallingStar() {
     const fallingStar = document.createElement('div');
     fallingStar.classList.add('falling-star');
@@ -23,7 +25,7 @@ function newFallingStar() {
 
 
 
-
+// Define start, win and lose screens
 const startUI = document.createElement('div');
 startUI.id = "startUI";
 const title = document.createElement('h1');
@@ -68,7 +70,7 @@ startButton.addEventListener('click', () => {
 })
 startUI.append(title, startImage, startButton);
 
-
+//Win screen
 const winUI = document.createElement('div');
 winUI.id = "winUI";
 const winMessage = document.createElement('h1');
@@ -88,6 +90,8 @@ winReturnButton.addEventListener('click', () => {
 })
 winUI.appendChild(winReturnButton);
 
+
+//Lose screen
 const loseUI = document.createElement('div');
 loseUI.id = "loseUI";
 const loseMessage = document.createElement('h1');
@@ -113,7 +117,7 @@ loseReturnButton.addEventListener('click', () => {
 loseUI.appendChild(loseReturnButton);
 
 
-
+// UI manipulation: gameBoard is the main area where animations occur during the game
 const gameBoardUI = document.createElement('div');
 gameBoardUI.id = "gameBoardUI";
 
@@ -124,7 +128,7 @@ const screens: Record<string,HTMLDivElement> = {
     gameBoardUI: gameBoardUI
 }
 
-
+// changing screens
 window.changeScreen = function (screenName: string) {
     for (let screen in screens) {
         if (screens[screen].parentElement === document.body) {

@@ -1,5 +1,9 @@
 import dictionary from '../data/dictionary' assert { type: 'json' };
 
+// Function to generate a random word from the dictionary data file
+// Can specify to generate random word of a range of lengths from minLength to maxLength
+// Words are uniformly distributed
+
 const generateWord = function (minLength: number, maxLength: number): string {
   let totalLength = 0;
   for (let i = minLength; i <= maxLength; i++) {
@@ -16,6 +20,8 @@ const generateWord = function (minLength: number, maxLength: number): string {
   }
   return '';
 }
+
+// Data for the different kinds of debris such as fall speed, sprite and word lengths they can possibly be
 
 const debrisTypes: Record<number,{minLength:number,maxLength:number,speed:number,image:string,classes:string[]}> = {
   1: {
@@ -49,7 +55,6 @@ const debrisTypes: Record<number,{minLength:number,maxLength:number,speed:number
 }
 
 const explode = String.fromCodePoint(0X1F4A5);
-
 
 export default class Debris {
   id: string;
@@ -109,11 +114,13 @@ export default class Debris {
 
   // Behaviour controls for all Debris
 
+  // A debris may exist but not be on-screen and available to be hit. Spawning makes it available to hit
   spawn() {
     document.querySelector('#gameBoardUI')?.appendChild(this.uiElement);
     window.gameState.activeDebris.push(this);
   }
 
+  // Method to damage the debris and knock a letter off
   strike() {
     this.remaining.shift();
     if (this.remaining.length == 0) {
@@ -123,6 +130,7 @@ export default class Debris {
     this.uiLabel.innerText = this.remaining.join('');
   }
 
+  // Method to display a destruction animation for the debris
   destroy() {
     this.uiElement.removeChild(this.uiLabel);
     this.image.innerText = explode;
@@ -154,11 +162,13 @@ export default class Debris {
     }
   }
 
+  // Method to set the position of the debris on the DOM
   setPosition() {
     this.uiElement.style.top = (100 - this.height) + '%';
     this.uiElement.style.left = this.posX + "%";
   }
 
+  // Method to be called when time passes, causing the height to decrease and for the DOM element to visually fall
   fall() {
     this.height -= this.speed / 100;
     if (this.height <= 0) {
