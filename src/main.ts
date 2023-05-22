@@ -2,6 +2,12 @@ import './style.css'
 import Debris from './debris.ts'
 import Game from './game.ts'
 
+declare global {
+    interface Window { 
+        gameState: Game,
+    changeScreen: Function }
+}
+
 function newEarth() {
     const earth = document.createElement('div');
     earth.classList.add('earth-large');
@@ -57,7 +63,7 @@ const startButton = document.createElement('div');
 startButton.classList.add('button');
 startButton.innerText = "START";
 startButton.addEventListener('click', () => {
-    changeScreen('gameBoardUI');
+    window.changeScreen('gameBoardUI');
     window.gameState = new Game();
     window.gameState.start();
 })
@@ -79,7 +85,7 @@ const winReturnButton = document.createElement('div');
 winReturnButton.classList.add('button');
 winReturnButton.innerText = "BACK TO MAIN MENU";
 winReturnButton.addEventListener('click', () => {
-    changeScreen('startUI');
+    window.changeScreen('startUI');
 })
 winUI.appendChild(winReturnButton);
 
@@ -103,7 +109,7 @@ const loseReturnButton = document.createElement('div');
 loseReturnButton.classList.add('button');
 loseReturnButton.innerText = "try again?";
 loseReturnButton.addEventListener('click', () => {
-    changeScreen('startUI');
+    window.changeScreen('startUI');
 })
 loseUI.appendChild(loseReturnButton);
 
