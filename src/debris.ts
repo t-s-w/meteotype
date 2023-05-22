@@ -1,4 +1,4 @@
-import dictionary from '../data/dictionary' assert { type: 'json' };
+import dictionary from '../data/dictionary'
 
 // Function to generate a random word from the dictionary data file
 // Can specify to generate random word of a range of lengths from minLength to maxLength
