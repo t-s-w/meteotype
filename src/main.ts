@@ -68,7 +68,25 @@ startButton.addEventListener('click', () => {
     window.gameState = new Game();
     window.gameState.start();
 })
-startUI.append(title, startImage, startButton);
+
+const instructions = document.createElement('div');
+instructions.classList.add('instructions');
+instructions.classList.add('hidden');
+instructions.innerHTML = `<ul><li>A barrage of meteors is headed right towards Earth! Grab your trusty keyboard-aimed laser and blast them before certain doom!</li>
+
+<li>Type to destroy falling meteors and stars before they reach the bottom line.</li>
+
+<li>Different objects have different fall speeds. Some might even spawn more after being destroyed!</li>
+
+<li>Finish what you start! You can't change targets until they're destroyed.</li></ul>`
+
+const howToPlay = document.createElement('div');
+howToPlay.classList.add('button');
+howToPlay.innerText = "HOW TO PLAY";
+howToPlay.addEventListener('mouseover',() => {instructions.classList.remove('hidden')});
+howToPlay.addEventListener('mouseout',() => {instructions.classList.add('hidden')});
+
+startUI.append(title, startImage, startButton,instructions,howToPlay);
 
 //Win screen
 const winUI = document.createElement('div');
@@ -110,7 +128,7 @@ loseUI.appendChild(loseImage);
 
 const loseReturnButton = document.createElement('div');
 loseReturnButton.classList.add('button');
-loseReturnButton.innerText = "try again?";
+loseReturnButton.innerText = "...try again?";
 loseReturnButton.addEventListener('click', () => {
     window.changeScreen('startUI');
 })
