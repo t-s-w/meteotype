@@ -1,6 +1,6 @@
-import dictionary from '../data/dictionary.json' assert { type: 'json' };
+import dictionary from '../data/dictionary.js' assert { type: 'json' };
 
-const generateWord = function (minLength: number, maxLength: number) {
+const generateWord = function (minLength: number, maxLength: number): string {
   let totalLength = 0;
   for (let i = minLength; i <= maxLength; i++) {
     totalLength += dictionary[String(i)].length;
@@ -14,9 +14,10 @@ const generateWord = function (minLength: number, maxLength: number) {
       return dictionary[String(i)][selection]
     }
   }
+  return '';
 }
 
-const debrisTypes = {
+const debrisTypes: Record<number,{minLength:number,maxLength:number,speed:number,image:string,classes:string[]}> = {
   1: {
     minLength: 5,
     maxLength: 6,
@@ -78,7 +79,8 @@ export default class Debris {
     // Type-specific parameters
     let params = debrisTypes[type];
     this.speed = params.speed;
-    this.word = generateWord(params.minLength, params.maxLength);
+    const word = generateWord(params.minLength, params.maxLength);
+    this.word = word;
     this.remaining = this.word.split('');
     this.speedX = (this.endX - this.posX) / (this.height / this.speed)
 

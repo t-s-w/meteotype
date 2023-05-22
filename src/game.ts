@@ -1,7 +1,7 @@
 import Debris from './debris.ts';
 
-const waves = [
-    , { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }, { debrisList: [1, 3, 1, 3, 1, 3, 1, 3], delay: 1000 }, { debrisList: [1, 2, 2, 3, 1, 3, 3, 2, 3], delay: 1000 }
+const waves: {debrisList: number[],delay:number}[] = [
+    ({debrisList: [],delay:0}), { debrisList: [1, 1, 1, 1, 1], delay: 1500 }, { debrisList: [1, 1, 1, 2, 1, 1, 1], delay: 1000 }, { debrisList: [1, 3, 1, 3, 1, 3, 1, 3], delay: 1000 }, { debrisList: [1, 2, 2, 3, 1, 3, 3, 2, 3], delay: 1000 }
 ]
 
 const targetingReticle = document.createElement('table');
@@ -20,7 +20,7 @@ export default class Game {
     activeDebris: Debris[];
     queuedDebris: Debris[];
     currentTarget: Debris | undefined;
-    gameBoard: Element | undefined | null;
+    gameBoard: HTMLElement;
     debrisIndex: number;
     gameTimeHandler: number;
     systemMessageTimer: number;
@@ -37,7 +37,7 @@ export default class Game {
         this.queuedDebris = [];
         this.currentWave = 0;
         this.maxWaves = waves.length - 1;
-        this.gameBoard = document.querySelector('#gameBoardUI');
+        this.gameBoard = <HTMLElement>document.querySelector('#gameBoardUI');
         document.addEventListener('keydown', (evt) => this.keyHandler(evt));
         this.gameTimeHandler = 0;
         this.systemMessageTimer = 0;
@@ -85,7 +85,7 @@ export default class Game {
         if (this.systemMessageTimer > 0 || !text) {
             return;
         }
-        let messageUI = this.gameBoard?.querySelector('#status');
+        let messageUI = <HTMLElement>this.gameBoard?.querySelector('#status');
         if (!messageUI) {
             messageUI = document.createElement('div');
             messageUI.id = 'status';

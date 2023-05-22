@@ -1,5 +1,4 @@
 import './style.css'
-import Debris from './debris.ts'
 import Game from './game.ts'
 
 declare global {
@@ -118,7 +117,7 @@ loseUI.appendChild(loseReturnButton);
 const gameBoardUI = document.createElement('div');
 gameBoardUI.id = "gameBoardUI";
 
-const screens = {
+const screens: Record<string,HTMLDivElement> = {
     startUI: startUI,
     winUI: winUI,
     loseUI: loseUI,
