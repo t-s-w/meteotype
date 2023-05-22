@@ -12,6 +12,10 @@ https://t-s-w.github.io/meteotype - Click to play
 * HTML & CSS - HTML provides the structure of the document objects on the screen, CSS is used to make them look good!
 * Vite - development environment used to code the game.
 
+## Game screenshot
+
+![Screenshot of game in progress](img/img.png)
+
 ## Wireframe - Development notes
 
 ### The Debris Class - basic unit of the game
