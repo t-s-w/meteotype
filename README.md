@@ -2,6 +2,8 @@
 
 A shower of meteors is headed right toward Earth and threatening world destruction! Grab your keyboard-controlled weirdly powerful laser and destroy the pieces before they land!
 
+<div style="display:flex;justify-content:center;flex-direction:column;"><span style="padding:10px;font-family:Helvetica sans-serif;font-weight:bold;background-color:#555;color:#aaa;"><a href="https://t-s-w.github.io/meteotype">PLAY</a></span></div>
+
 ## Tech Stack
 
 * TypeScript (Javascript) - Used to control majority of the game.
