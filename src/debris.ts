@@ -1,4 +1,4 @@
-import dictionary from '../data/dictionary.js' assert { type: 'json' };
+import dictionary from '../data/dictionary' assert { type: 'json' };
 
 const generateWord = function (minLength: number, maxLength: number): string {
   let totalLength = 0;
