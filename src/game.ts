@@ -194,12 +194,5 @@ export default class Game {
         setTimeout(() => {window.changeScreen('loseUI');this.gameBoard.innerHTML = '';}, 1000);
     }
 
-    // debugging methods
-    debug() {
-        let meteo = new Debris(this.debrisIndex, Math.floor(Math.random() * 3) + 1)
-        this.debrisIndex++;
-        meteo.spawn();
-    }
-
 
 }

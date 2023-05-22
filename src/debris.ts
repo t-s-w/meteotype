@@ -114,12 +114,6 @@ export default class Debris {
 
   // Behaviour controls for all Debris
 
-  // A debris may exist but not be on-screen and available to be hit. Spawning makes it available to hit
-  spawn() {
-    document.querySelector('#gameBoardUI')?.appendChild(this.uiElement);
-    window.gameState.activeDebris.push(this);
-  }
-
   // Method to damage the debris and knock a letter off
   strike() {
     this.remaining.shift();
@@ -160,6 +154,12 @@ export default class Debris {
       childDebris1.spawn();
       childDebris2.spawn();
     }
+  }
+
+  // A debris may exist but not be on-screen and available to be hit. Spawning makes it available to hit
+  spawn() {
+    document.querySelector('#gameBoardUI')?.appendChild(this.uiElement);
+    window.gameState.activeDebris.push(this);
   }
 
   // Method to set the position of the debris on the DOM
