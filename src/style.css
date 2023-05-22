@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 :root {
   font-family: Lato, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -111,9 +112,11 @@ body {
   border: 1px solid #fff;
   vertical-align: middle;
   border-radius: 5px;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 1px;
   color: #fff;
+  font-family: Inter, Lato, Helvetica, sans-serif;
+  font-size: 15px;
 }
 
 .debris-sprite {
