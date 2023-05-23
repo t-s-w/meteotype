@@ -9,7 +9,7 @@
 }
 
 #stars, #stars1, #stars2, #stars3, #stars4 {
-    --star-colour: rgba(248,255,96,0.6);
+    --star-colour: #c49952;
 }
 
 .bg-animation {
