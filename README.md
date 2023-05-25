@@ -22,7 +22,7 @@ Objects will continuously fall down. The objects have words on them; type them o
 
 Make your way through multiple waves of falling debris and destroy all of them to save the world!
 
-## Wireframe - Development notes
+## Development notes
 
 ### Overall takeaways
 
