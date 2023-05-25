@@ -16,7 +16,31 @@ https://t-s-w.github.io/meteotype - Click to play
 
 ![Screenshot of game in progress](img/img.png)
 
+## How to Play
+
+Objects will continuously fall down. The objects have words on them; type them out to destroy them before they reach the bottom of the screen. A single one getting through will be game over!
+
+Make your way through multiple waves of falling debris and destroy all of them to save the world!
+
 ## Wireframe - Development notes
+
+### Overall takeaways
+
+The main things I learned from this project:
+
+- Development with Vite framework, which loads script files as modules rather than scripts. This means objects are private by default unless exported for use in other modules, which provides a layer of code security and cleanliness.
+- Deployment via Github Actions, which use a workflow to deploy the project from code, which is a bit more complex than normal Github Pages deployment which is simply hosting the html and code.
+- TypeScript: This is my first project with TypeScript and I learned a lot of good coding practices from the errors that TypeScript would throw when compiling, such as being rigorous and ensuring that the types and properties of the objects being passed into functions are what they are intended to be.
+
+### Deployment
+
+Deployment is done via GitHub Actions, using a workflow that was provided by the Vite Documentation here: https://vitejs.dev/guide/static-deploy.html
+
+### Development
+
+Development was done locally using a Vite TypeScript project as the starting framework. 
+
+The development approach to this game was an OOP (Object-Oriented Programming)-centric one. The operation of the game is controlled by two main object classes, `Debris` and `Game`.
 
 ### The Debris Class - basic unit of the game
 A `Debris` object forms the most common unit of the game. It has the following properties:
@@ -37,6 +61,15 @@ Debris methods include the following:
 * Interaction: `strike` is called if the player types the correct letter and progresses the destruction of the Debris by removing one letter.
 * Destruction: `destroy` will remove the current Debris from the game's list of active meteors and play screen, while animating their destruction.
 * `spawn` (func): Puts the Debris into play. Makes it active, falling, targetable while creating the DOM elements to make it visble to player.
+
+#### Debris Types
+
+Debris have different types specified in the `Debris.ts` module, to add variety and difficulty to the game.
+
+ 1. Type 1 Debris are the basic falling object, with an average word length (5-6) and falling speed.
+ 2. Type 2 Debris are large and have longer word lengths (9-11) than Type 1. They also break into two smaller debris (3-length words) when destroyed, but fall slower.
+ 3. Type 3 Debris are small and have shorter word lengths, but fall at triple the speed! Watch out!
+ 4. Type 4 Debris are the smaller class of Debris that spawn only when Type 2s are destroyed.
 
 
 ### Game State - the Game Class
