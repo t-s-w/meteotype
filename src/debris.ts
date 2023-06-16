@@ -23,32 +23,32 @@ const generateWord = function (minLength: number, maxLength: number): string {
 
 // Data for the different kinds of debris such as fall speed, sprite and word lengths they can possibly be
 
-const debrisTypes: Record<number,{minLength:number,maxLength:number,speed:number,image:string,classes:string[]}> = {
+const debrisTypes: Record<number, { minLength: number, maxLength: number, speed: number, image: string, classes: string[] }> = {
   1: {
     minLength: 5,
     maxLength: 6,
-    speed: 10,
+    speed: 15,
     image: String.fromCodePoint(0x1F311),
     classes: ['spinning']
   },
   2: {
     minLength: 9,
     maxLength: 11,
-    speed: 4,
+    speed: 8,
     image: String.fromCodePoint(0x1F31D),
     classes: ['large']
   },
   3: {
     minLength: 3,
     maxLength: 4,
-    speed: 30,
+    speed: 40,
     image: String.fromCodePoint(0x1F320),
     classes: ['shootingstar']
   },
   4: {
     minLength: 3,
     maxLength: 3,
-    speed: 4,
+    speed: 8,
     image: String.fromCodePoint(0x1F31A),
     classes: ['small']
   }
